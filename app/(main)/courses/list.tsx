@@ -5,6 +5,7 @@ import { Card } from "./card";
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { upsertUserProgress } from "@/actions/user-progress";
+import { toast } from "sonner";
 
 type Props = {
     courses : typeof courses.$inferSelect[];
@@ -24,7 +25,11 @@ export const List = ({courses,activeCourseId} : Props) => {
         }
 
         startTransition(() =>{
-            upsertUserProgress(id);
+            upsertUserProgress(id).then(() => {
+                toast.success("Progress updated");
+            }).catch(() => {
+                toast.error("Failed to update progress");
+            })
         })
     }
 
