@@ -37,6 +37,14 @@ const main = async () => {
                 id:4,
                 title:"Croation",
                 imageSrc:"/hr.svg"
+            },{
+                id:5,
+                title:"Hindi",
+                imageSrc:"/in.jpg"
+            },{
+                id: 6,
+                title: "Japanese",
+                imageSrc: "/jp.png"
             }
         ]);
 
@@ -47,6 +55,18 @@ const main = async () => {
                 title:"Unit 1",
                 description:"Learn the basics of Spanish",
                 order:1
+            },{
+                id: 2,
+                courseId: 5,
+                title: "Unit 1",
+                description: "Learn the basics of Hindi",
+                order: 2
+            },{
+                id: 3,
+                courseId: 6,
+                title: "Unit 1",
+                description: "Learn the basics of Japanese",
+                order: 1
             }
         ]);
 
@@ -77,6 +97,16 @@ const main = async () => {
                 unitId:1,
                 title:"Verbs",
                 order:5,
+            },{
+                id: 6,
+                unitId: 2,
+                title: "Nouns",
+                order: 6
+            },{
+                id: 7,
+                unitId: 3,
+                title: "Nouns",
+                order: 1
             }
         ])
 
@@ -99,6 +129,32 @@ const main = async () => {
                 type:"SELECT",
                 order:3,
                 question:'Which one of these is "the robot"?',
+            },{
+                id:7,
+                lessonId: 6,
+                type: "SELECT",
+                order: 1,
+                question: 'Which of these means "the man"?',
+            },
+            {
+                id: 8,
+                lessonId: 6,
+                type: "ASSIST",
+                order: 2,
+                question: '"the man"',
+            },{
+                id: 9,
+                lessonId: 7,
+                type: "SELECT",
+                order: 1,
+                question: 'Which of these means "the man"?',
+            },
+            {
+                id: 10,
+                lessonId: 7,
+                type: "ASSIST",
+                order: 2,
+                question: '"the man"',
             }
         ])
         await db.insert(schema.challengeOptions).values([
@@ -184,6 +240,92 @@ const main = async () => {
                 question:'Which one of these is "the robot"?',
             }
         ])
+        await db.insert(schema.challengeOptions).values([
+            {
+                challengeId: 7,
+                imageSrc: "/man.svg",
+                correct: true,
+                text: "Aadmi / आदमी",
+                audioSrc: "/hi_man.mp3"
+            },
+            {
+                challengeId: 7,
+                imageSrc: "/woman.svg",
+                correct: false,
+                text: "Aurat / औरत",
+                audioSrc: "/hi_woman.mp3"
+            },
+            {
+                challengeId: 7,
+                imageSrc: "/robot.svg",
+                correct: false,
+                text: "Robot / रोबोट",
+                audioSrc: "/hi_robot.mp3"
+            }
+        ]);
+        await db.insert(schema.challengeOptions).values([
+            {
+                challengeId: 8,
+                correct: true,
+                text: "Aadmi / आदमी",
+                audioSrc: "/hi_man.mp3"
+            },
+            {
+                challengeId: 8,
+                correct: false,
+                text: "Aurat / औरत",
+                audioSrc: "/hi_woman.mp3"
+            },
+            {
+                challengeId: 8,
+                correct: false,
+                text: "Robot / रोबोट",
+                audioSrc: "/hi_robot.mp3"
+            }
+        ]);
+        await db.insert(schema.challengeOptions).values([
+            {
+                challengeId: 9,
+                imageSrc: "/man.svg",
+                correct: true,
+                text: "Otoko no hito / 男の人", // Otoko no hito
+                audioSrc: "/jp_man.mp3"
+            },
+            {
+                challengeId: 9,
+                imageSrc: "/woman.svg",
+                correct: false,
+                text: "Onna no hito / 女の人", // Onna no hito
+                audioSrc: "/jp_woman.mp3"
+            },
+            {
+                challengeId: 9,
+                imageSrc: "/robot.svg",
+                correct: false,
+                text: "Robotto / ロボット", // Robotto
+                audioSrc: "/jp_robot.mp3"
+            }
+        ]);
+        await db.insert(schema.challengeOptions).values([
+            {
+                challengeId: 10,
+                correct: true,
+                text: "Otoko no hito / 男の人", // Otoko no hito
+                audioSrc: "/jp_man.mp3"
+            },
+            {
+                challengeId: 10,
+                correct: false,
+                text: "Onna no hito / 女の人", // Onna no hito
+                audioSrc: "/jp_woman.mp3"
+            },
+            {
+                challengeId: 10,
+                correct: false,
+                text: "Robotto / ロボット", // Robotto
+                audioSrc: "/jp_robot.mp3"
+            }
+        ]);
         console.log("Seeding finished")
     }catch(error){
         console.error(error);
